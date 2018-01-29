@@ -1,25 +1,15 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import { Library } from './Library'
 
 class Books extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      books:
-        [{ title: 'my bike', img: 'asdf' },
-        { title: 'our dog', img: 'zxcv' },
-        { title: 'the cat', img: 'qwer' }],
+      books: Library,
       book: {}
     }
-  }
-
-  incrementCount = (id) => {
-
-    // let clickedBook = this.state.books.filter(book => book.id === id)[0]
-    // this.setState({
-    //   book: clickedBook
-    // })
   }
 
   render() {
@@ -28,10 +18,10 @@ class Books extends Component {
         return (
           <div key={index}>
             <Book
+              id={book.id}
               title={book.title}
-              image={book.img}
-              incrementCount={(id) => this.incrementCount(id)} />
-          </div >
+              subject={book.subject} />
+          </div>
         )
       })
     )

@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react'
 import './App.css'
+import { Link } from 'react-router-dom'
 
-const Book = (props) => {
-  return (
-    <div className="Center">
-      <h4>Title: {props.title}</h4>
-      <h4>Image: {props.img}</h4>
-      <button
-        onClick={props.incrementCount()}>Count+</button>
-    </div>
-  );
-};
+class Book extends Component {
+  state = {
+    count: 0
+  }
 
-export default Book;
+  incrementCount = (id) => {
+    let currentCount = this.state.count
+    this.setState({
+      count: currentCount + 1
+    })
+  }
+
+  render() {
+    let book = (
+      <div className="Center">
+        <h4>{this.props.title}</h4>
+        <p>{this.props.subject}</p>
+        <button
+          type="button"
+          name="count"
+          value={this.state.count}
+          onClick={() => this.incrementCount()}>{this.state.count}</button>
+        <h5>
+          <Link to={`/books/${this.props.id}`}>Show me that book!</Link></h5>
+      </div >
+    )
+
+    return (
+      <div>
+        {book}
+      </div>
+    )
+  }
+}
+
+export default Book
